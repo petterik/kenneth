@@ -1,0 +1,8 @@
+Append System.out.print ("Letter") after each ;
+Find .java classes
+Add to specific methods
+Add to specific classes
+Generate next "letter". (a, b, c, d, …, z, ab, ab, ac, ad, ae, af, …)
+
+------- Later
+Extract inline assignments [ex. if((i = 2) == 2)]
