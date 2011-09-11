@@ -1,10 +1,5 @@
-Append System.out.print ("Letter") after each ;
-Remove the appended code.
+Jämföra fält.
+Jämföra state i en klass.
 
-Find .java classes
-Add to specific methods
-Add to specific classes
-Generate next "letter". (a, b, c, d, …, z, ab, ab, ac, ad, ae, af, …)
 
-------- Later
-Extract inline assignments [ex. if((i = 2) == 2)]
+Kan man jämföra states i alla klasser i alla fall?
