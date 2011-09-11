@@ -6,12 +6,13 @@ public class ObjectField {
 
 	private final Object object;
 	private final Field field;
+
 	ObjectField(Object object, Field field) {
 		this.object = object;
 		this.field = field;
 		field.setAccessible(true);
 	}
-	
+
 	ObjectField(ObjectField objectField) {
 		this(objectField.getObject(), objectField.getField());
 	}
@@ -27,17 +28,22 @@ public class ObjectField {
 	public boolean isPrimitive() {
 		return field.getType().isPrimitive();
 	}
-	
-	public boolean isArray () {
+
+	public boolean isArray() {
 		return field.getType().isArray();
 	}
-	
-	public Object getValue () {
+
+	public Object getValue() {
 		try {
 			return field.get(object);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return "ObjectField [object=" + object + ", field=" + field == null ? "(null)" : field.getName() + "]";
+	}
+
 }
