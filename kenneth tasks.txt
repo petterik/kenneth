@@ -1,5 +1,7 @@
-Jämföra fält.
-Jämföra state i en klass.
+Open questions.
+- How does someone use Kenneth?
+- Persistance with Serializable to compare two totaly different runs?
 
+Warnings.
+- Warning for high complexity in ObjectStateComparator#isObjectContainedInCheckedObjects (). It should be doable with a Set instead of a List.
 
-Kan man jämföra states i alla klasser i alla fall?
