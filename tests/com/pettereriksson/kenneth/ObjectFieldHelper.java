@@ -5,6 +5,7 @@ import com.pettereriksson.kenneth.objectfield.ObjectField;
 import com.pettereriksson.kenneth.objectfield.ObjectFieldFactory;
 import com.pettereriksson.kenneth.objectfield.PrimitiveField;
 import com.pettereriksson.kenneth.testclasses.ClassWithArray;
+import com.pettereriksson.kenneth.testclasses.ClassWithList;
 import com.pettereriksson.kenneth.testclasses.ClassWithNonPrimitiveFields;
 import com.pettereriksson.kenneth.testclasses.ClassWithPrivateIntField;
 import com.pettereriksson.kenneth.testclasses.ClassWithTwoPrimitiveFields;
@@ -34,5 +35,14 @@ public class ObjectFieldHelper {
 	public static PrimitiveField getPrimitiveObjectFieldWithValue(int i) {
 		Object object = new ClassWithPrivateIntField(i);
 		return (PrimitiveField)makeObjectFieldOutOfObjectsFirstField(object);
+	}
+
+	public static ObjectField getListField() {
+		return getListField(0, 0);
+	}
+
+	public static ObjectField getListField(int i, int j) {
+		Object object = new ClassWithList(i, j);
+		return makeObjectFieldOutOfObjectsFirstField(object);
 	}
 }
