@@ -22,15 +22,23 @@ public class ObjectState {
 
 	private ObjectState saveFields() {
 		objectFields = new ArrayList<ObjectField>();
-		Class<? extends Object> clazz = object == null ? null : object.getClass();
-		while (clazz != null) {
-			addFieldsFromClass(clazz);
-			clazz = clazz.getSuperclass();
-		}
+		addFieldsFromClassHierarcy();
 		return this;
 	}
 
-	private void addFieldsFromClass(Class<? extends Object> class1) {
+	@SuppressWarnings("rawtypes")
+	private void addFieldsFromClassHierarcy() {
+		for (Class clazz = getObjectsClass(); clazz != null; clazz = clazz.getSuperclass())
+			addFieldsFromClass(clazz);
+	}
+
+	@SuppressWarnings("rawtypes")
+	private Class getObjectsClass() {
+		return object == null ? null : object.getClass();
+	}
+
+	@SuppressWarnings("rawtypes")
+	private void addFieldsFromClass(Class class1) {
 		for (Field f : class1.getDeclaredFields())
 			objectFields.add(ObjectFieldFactory.get(object, f));
 	}
