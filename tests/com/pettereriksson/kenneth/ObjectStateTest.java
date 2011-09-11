@@ -2,7 +2,6 @@ package com.pettereriksson.kenneth;
 
 import static org.junit.Assert.assertEquals;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
 import org.junit.Test;
@@ -13,8 +12,8 @@ public class ObjectStateTest {
 
 	@Test
 	public void should_saveAllFields () {
-		ObjectState state = ObjectState.Save (new ClassWithTwoPrimitiveFields());
-		List<Field> fields = state.getFields ();
+		ObjectState state = ObjectState.SaveState (new ClassWithTwoPrimitiveFields());
+		List<ObjectField> fields = state.getObjectFields ();
 		int expectedSize = 2;
 		assertEquals (expectedSize, fields.size ());
 	}

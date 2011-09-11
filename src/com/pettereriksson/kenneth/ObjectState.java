@@ -2,15 +2,14 @@ package com.pettereriksson.kenneth;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ObjectState {
 
 	private final Object object;
-	private List<Field> fields;
+	private List<ObjectField> objectFields;
 	
-	public static ObjectState Save(Object object) {
+	public static ObjectState SaveState(Object object) {
 		return new ObjectState(object).saveFields();
 	}
 	
@@ -19,21 +18,18 @@ public class ObjectState {
 	}
 
 	private ObjectState saveFields () {
-		fields = new ArrayList<Field>();
-		Collections.addAll(fields, object.getClass().getDeclaredFields());
+		objectFields = new ArrayList<ObjectField>();
+		for (Field f : object.getClass().getDeclaredFields())
+			objectFields.add(new ObjectField(object, f));
 		return this;
 	}
 
-	public List<Field> getFields() {
-		return fields;
+	public List<ObjectField> getObjectFields() {
+		return objectFields;
 	}
 	
 	public Field getField (int i) {
-		return fields.get(i);
-	}
-	
-	public Object getObject () {
-		return object;
+		return objectFields.get(i).getField();
 	}
 	
 }

@@ -9,6 +9,7 @@ public class ObjectField {
 	public ObjectField(Object object, Field field) {
 		this.object = object;
 		this.field = field;
+		field.setAccessible(true);
 	}
 	
 	public Object getObject() {
@@ -17,6 +18,18 @@ public class ObjectField {
 
 	public Field getField() {
 		return field;
+	}
+
+	public boolean isPrimitive() {
+		return field.getType().isPrimitive();
+	}
+	
+	public Object getValue () {
+		try {
+			return field.get(object);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }

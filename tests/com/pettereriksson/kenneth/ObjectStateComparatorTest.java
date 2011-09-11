@@ -17,8 +17,8 @@ public class ObjectStateComparatorTest {
 	}
 	
 	private void checkStateEqualityIsEqual(Object instance1, Object instance2) {
-		ObjectState state = ObjectState.Save(instance1);
-		ObjectState state2 = ObjectState.Save(instance2);
+		ObjectState state = ObjectState.SaveState(instance1);
+		ObjectState state2 = ObjectState.SaveState(instance2);
 		assertTrue (ObjectStateComparator.Make(state, state2).isEqual());
 	}
 	
@@ -43,8 +43,8 @@ public class ObjectStateComparatorTest {
 		ClassWithTwoPrimitiveFields different = createClassWithTwoFields(1, 2);
 		assertFalse (instance.equals(different));
 		
-		ObjectState state1 = ObjectState.Save(instance);
-		ObjectState state2 = ObjectState.Save(different);
+		ObjectState state1 = ObjectState.SaveState(instance);
+		ObjectState state2 = ObjectState.SaveState(different);
 		assertFalse (ObjectStateComparator.Make(state1, state2).isEqual());
 	}
 	
@@ -57,9 +57,9 @@ public class ObjectStateComparatorTest {
 		checkStateEqualityIsEqual(instance, different);
 	}
 	
-//	@Test
+	@Test
 	public void shouldNot_infiniteLoopWithFieldsPointingBackwards () {
-		ObjectState state1 = ObjectState.Save(new ClassWithSelfPointer());
+		ObjectState state1 = ObjectState.SaveState(new ClassWithSelfPointer());
 		checkStateEqualityIsEqual(state1, state1);
 	}
 
