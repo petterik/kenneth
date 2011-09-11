@@ -62,7 +62,7 @@ public class ObjectFieldComparator {
 	private boolean compareFieldsState(Object object1, Object object2) {
 		ObjectState save = ObjectState.Save(object1);
 		ObjectState save2 = ObjectState.Save(object2);
-		return save.equals(save2);
+		return ObjectStateComparator.Make(save, save2).isEqual();
 	}
 
 }

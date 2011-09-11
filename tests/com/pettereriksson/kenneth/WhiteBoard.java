@@ -1,7 +1,6 @@
 
 package com.pettereriksson.kenneth;
 
-import org.junit.Before;
 
 public class WhiteBoard {
 

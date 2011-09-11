@@ -1,5 +1,6 @@
 package com.pettereriksson.kenneth.testclasses;
 
 public class ClassWithPrivateIntField {
-	private double j = 0;
+	@SuppressWarnings("unused")
+	private int j = 0;
 }
