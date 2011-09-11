@@ -10,14 +10,6 @@ public class PrimitiveFieldComparator extends FieldComparator {
 	}
 
 	public boolean isEqual() {
-		try {
-			return doCheckEquality ();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	private boolean doCheckEquality() throws Exception {
 		return field.getValue().equals(field2.getValue());
 	}
 
