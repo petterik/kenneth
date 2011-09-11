@@ -44,7 +44,11 @@ public class ArrayFieldComparator extends FieldComparator {
 	}
 
 	private Object[] createArray(Object fieldValue) {
-		int length = Array.getLength(fieldValue);
+		int length;
+		if (fieldValue == null)
+			length = 0;
+		else
+			length = Array.getLength(fieldValue);
 		Object[] array = new Object[length];
 		for (int i = 0; i < length; i++)
 			array[i] = Array.get(fieldValue, i);
