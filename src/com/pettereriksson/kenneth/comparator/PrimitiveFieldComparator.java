@@ -2,7 +2,6 @@ package com.pettereriksson.kenneth.comparator;
 
 import com.pettereriksson.kenneth.objectfield.PrimitiveField;
 
-
 public class PrimitiveFieldComparator extends FieldComparator {
 
 	PrimitiveFieldComparator(PrimitiveField objectField1, PrimitiveField objectField2) {

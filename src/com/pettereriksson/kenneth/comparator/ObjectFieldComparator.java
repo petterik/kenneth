@@ -14,6 +14,10 @@ public class ObjectFieldComparator extends FieldComparator {
 
 	@Override
 	public boolean isEqual() {
+		return compareState ();
+	}
+
+	private boolean compareState() {
 		ObjectState fieldState = ObjectState.SaveState(field.getValue());
 		ObjectState fieldState2 = ObjectState.SaveState(field2.getValue());
 		return objectStateComparator.isEqualStates(fieldState, fieldState2);
