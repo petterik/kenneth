@@ -1,20 +1,14 @@
 package com.pettereriksson.kenneth;
 
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
 public class PrimitiveFieldComparatorTest {
 
-	@Test(expected=IllegalArgumentException.class)
-	public void should_raiseIllegalArgumentExceptionWhenFirstFieldIsNotPrimitive () {
-		ObjectField objectField = ObjectFieldHelper.getNonPrimitiveObjectField();
-		PrimitiveFieldComparator.Make(objectField, ObjectFieldHelper.getPrimitiveObjectField());
-	}
-	
-	@Test(expected=IllegalArgumentException.class)
-	public void should_raiseIllegalArgumentExceptionWhenSecondFieldIsNotPrimitive () {
-		ObjectField objectField = ObjectFieldHelper.getNonPrimitiveObjectField();
-		PrimitiveFieldComparator.Make(ObjectFieldHelper.getPrimitiveObjectField(), objectField);
-	}
 
+	@Test
+	public void should_haveIsEqualTest () {
+		fail ();
+	}
 }

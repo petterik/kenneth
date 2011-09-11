@@ -4,29 +4,39 @@ package com.pettereriksson.kenneth;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import com.pettereriksson.kenneth.comparator.ObjectStateComparator;
+import com.pettereriksson.kenneth.comparator.ObjectStateComparatorService;
 import com.pettereriksson.kenneth.testclasses.ClassWithNonPrimitiveFields;
 import com.pettereriksson.kenneth.testclasses.ClassWithSelfPointer;
 import com.pettereriksson.kenneth.testclasses.ClassWithTwoPrimitiveFields;
 
 public class ObjectStateComparatorTest {
 
+	ObjectStateComparator objectStateComparator;
+	
+	@Before
+	public void setUp() {
+		objectStateComparator = ObjectStateComparatorService.get();
+	}
+	
 	private ClassWithTwoPrimitiveFields createClassWithTwoFields(int i, int j) {
 		return new ClassWithTwoPrimitiveFields(i, j);
 	}
 	
 	private void checkStateEquality_IsEqual(Object instance1, Object instance2) {
-		ObjectState state = ObjectState.SaveState(instance1);
-		ObjectState state2 = ObjectState.SaveState(instance2);
-		assertTrue (ObjectStateComparator.Make(state, state2).isEqual());
+		ObjectState fieldState = ObjectState.SaveState(instance1);
+		ObjectState fieldState2 = ObjectState.SaveState(instance2);
+		assertTrue (objectStateComparator.isEqualStates(fieldState, fieldState2));
 	}
 
 	private void checkStateEquality_NotEqual(Object instance, Object different) {
 		assertFalse (instance.equals(different));
-		ObjectState state1 = ObjectState.SaveState(instance);
-		ObjectState state2 = ObjectState.SaveState(different);
-		assertFalse (ObjectStateComparator.Make(state1, state2).isEqual());
+		ObjectState fieldState = ObjectState.SaveState(instance);
+		ObjectState fieldState2 = ObjectState.SaveState(different);
+		assertTrue (!objectStateComparator.isEqualStates(fieldState, fieldState2));
 	}
 	
 	@Test

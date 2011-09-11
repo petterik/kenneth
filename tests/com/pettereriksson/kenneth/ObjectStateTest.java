@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import com.pettereriksson.kenneth.objectfield.ObjectField;
 import com.pettereriksson.kenneth.testclasses.ClassWithTwoPrimitiveFields;
 
 public class ObjectStateTest {

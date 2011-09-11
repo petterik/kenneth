@@ -1,5 +1,8 @@
 package com.pettereriksson.kenneth;
 
+import com.pettereriksson.kenneth.objectfield.ArrayField;
+import com.pettereriksson.kenneth.objectfield.ObjectField;
+import com.pettereriksson.kenneth.objectfield.ObjectFieldFactory;
 import com.pettereriksson.kenneth.testclasses.ClassWithArray;
 import com.pettereriksson.kenneth.testclasses.ClassWithNonPrimitiveFields;
 import com.pettereriksson.kenneth.testclasses.ClassWithTwoPrimitiveFields;
@@ -7,7 +10,8 @@ import com.pettereriksson.kenneth.testclasses.ClassWithTwoPrimitiveFields;
 public class ObjectFieldHelper {
 
 	private static ObjectField makeObjectField(Object object) {
-		return ObjectState.SaveState(object).getObjectFields ().get(0);
+		ObjectField firstField = ObjectState.SaveState(object).getObjectFields ().get(0);
+		return ObjectFieldFactory.get(firstField);
 	}
 	
 	public static ObjectField getPrimitiveObjectField () {
@@ -20,8 +24,8 @@ public class ObjectFieldHelper {
 		return makeObjectField(object);
 	}
 	
-	public static ObjectField getArrayWithValues (int i, int j) {
+	public static ArrayField getArrayWithValues (int i, int j) {
 		Object object = new ClassWithArray(i, j);
-		return makeObjectField(object);
+		return (ArrayField)makeObjectField(object);
 	}
 }

@@ -4,6 +4,9 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pettereriksson.kenneth.objectfield.ObjectField;
+import com.pettereriksson.kenneth.objectfield.ObjectFieldFactory;
+
 public class ObjectState {
 
 	private final Object object;
@@ -20,7 +23,7 @@ public class ObjectState {
 	private ObjectState saveFields () {
 		objectFields = new ArrayList<ObjectField>();
 		for (Field f : object.getClass().getDeclaredFields())
-			objectFields.add(new ObjectField(object, f));
+			objectFields.add(ObjectFieldFactory.get(object, f));
 		return this;
 	}
 
