@@ -65,8 +65,18 @@ public class ObjectStateComparator {
 	private boolean checkEquality(ObjectField objectField, ObjectField objectField2) {
 		if (areFieldsPrimitive(objectField, objectField2))
 			return PrimitiveFieldComparator.Make(objectField, objectField2).isEqual();
+		else if (areFieldsArrays(objectField, objectField2))
+			return ArrayFieldComparator.Make(objectField, objectField2).isEqual();
 		else
 			return isNonPrimitiveFieldsPrimitiveSubPartsEqual(objectField, objectField2);
+	}
+
+	private boolean areFieldsPrimitive(ObjectField objectField, ObjectField objectField2) {
+		return objectField.isPrimitive() && objectField2.isPrimitive();
+	}
+
+	private boolean areFieldsArrays(ObjectField objectField, ObjectField objectField2) {
+		return objectField.isArray() && objectField2.isArray();
 	}
 
 	private boolean areObjectsAlreadyChecked(Object object, Object object2) {
@@ -80,9 +90,6 @@ public class ObjectStateComparator {
 		return false;
 	}
 
-	private boolean areFieldsPrimitive(ObjectField objectField, ObjectField objectField2) {
-		return objectField.isPrimitive() && objectField2.isPrimitive();
-	}
 
 	private boolean isNonPrimitiveFieldsPrimitiveSubPartsEqual(ObjectField objectField, ObjectField objectField2) {
 		ObjectState save = ObjectState.SaveState(objectField.getValue());

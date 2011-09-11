@@ -24,6 +24,10 @@ public class ObjectField {
 		return field.getType().isPrimitive();
 	}
 	
+	public boolean isArray () {
+		return field.getType().isArray();
+	}
+	
 	public Object getValue () {
 		try {
 			return field.get(object);
