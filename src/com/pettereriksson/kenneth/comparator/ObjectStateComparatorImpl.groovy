@@ -1,16 +1,16 @@
 package com.pettereriksson.kenneth.comparator;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayList
+import java.util.List
 
-import com.pettereriksson.kenneth.ObjectState;
-import com.pettereriksson.kenneth.objectfield.ObjectField;
+import com.pettereriksson.kenneth.ObjectState
+import com.pettereriksson.kenneth.objectfield.ObjectField
 
 public class ObjectStateComparatorImpl implements ObjectStateComparator {
-	private final FieldComparatorFactory fieldComparatorFactory;
-	private final List<Object> checkedObjects;
-	private ObjectState state;
-	private ObjectState other;
+	private final FieldComparatorFactory fieldComparatorFactory
+	private final List<Object> checkedObjects
+	private ObjectState state
+	private ObjectState other
 
 	public ObjectStateComparatorImpl(FieldComparatorFactory fieldComparatorFactory) {
 		this.fieldComparatorFactory = fieldComparatorFactory;
@@ -89,5 +89,4 @@ public class ObjectStateComparatorImpl implements ObjectStateComparator {
 		FieldComparator comparator = fieldComparatorFactory.get(objectField, objectField2);
 		return comparator.isEqual();
 	}
-
 }

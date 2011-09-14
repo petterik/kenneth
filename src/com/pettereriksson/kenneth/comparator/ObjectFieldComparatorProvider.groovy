@@ -1,17 +1,16 @@
 package com.pettereriksson.kenneth.comparator;
 
-import com.pettereriksson.kenneth.objectfield.ObjectField;
+import com.pettereriksson.kenneth.objectfield.ObjectField
 
 public class ObjectFieldComparatorProvider {
 
-	private final ObjectStateComparator objectStateComparator;
+	private final ObjectStateComparator objectStateComparator
 
 	public ObjectFieldComparatorProvider(ObjectStateComparator objectStateComparator) {
-		this.objectStateComparator = objectStateComparator;
+		this.objectStateComparator = objectStateComparator
 	}
 
 	public ObjectFieldComparator get(ObjectField objectField, ObjectField objectField2) {
-		return new ObjectFieldComparator(objectStateComparator, objectField, objectField2);
+		new ObjectFieldComparator(objectStateComparator, objectField, objectField2)
 	}
-
 }

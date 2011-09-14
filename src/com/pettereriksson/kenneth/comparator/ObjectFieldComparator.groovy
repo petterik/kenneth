@@ -1,7 +1,7 @@
 package com.pettereriksson.kenneth.comparator;
 
-import com.pettereriksson.kenneth.ObjectState;
-import com.pettereriksson.kenneth.objectfield.ObjectField;
+import com.pettereriksson.kenneth.ObjectState
+import com.pettereriksson.kenneth.objectfield.ObjectField
 
 public class ObjectFieldComparator extends FieldComparator {
 
@@ -14,13 +14,12 @@ public class ObjectFieldComparator extends FieldComparator {
 
 	@Override
 	public boolean isEqual() {
-		return compareState ();
+		return compareState ()
 	}
 
 	private boolean compareState() {
-		ObjectState fieldState = ObjectState.SaveState(field.getValue());
-		ObjectState fieldState2 = ObjectState.SaveState(field2.getValue());
+		ObjectState fieldState = ObjectState.SaveState field.value
+		ObjectState fieldState2 = ObjectState.SaveState field2.value
 		return objectStateComparator.isEqualStates(fieldState, fieldState2);
 	}
-
 }

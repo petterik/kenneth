@@ -1,6 +1,6 @@
 package com.pettereriksson.kenneth.comparator;
 
-import java.lang.reflect.Method;
+import java.lang.reflect.Method
 
 public class EqualsImplementationChecker {
 
@@ -11,18 +11,17 @@ public class EqualsImplementationChecker {
 	}
 
 	public boolean hasOwnEqualsImplementation() {
-		for (Method m : object.getClass().getMethods())
-			if (isTheEqualsMethod (m) && !isImplementedByObjectClass (m))
-				return true;
-		return false;
+		for (method in object.getClass().getMethods())
+			if (isTheEqualsMethod (method) && !isImplementedByObjectClass (method))
+				return true
+		return false
 	}
 
 	private boolean isTheEqualsMethod(Method m) {
-		return m.getName().equals("equals");
+		return m.name == "equals"
 	}
 
 	private boolean isImplementedByObjectClass(Method m) {
-		return m.getDeclaringClass() == Object.class;
+		return m.declaringClass == Object.class;
 	}
-
 }
