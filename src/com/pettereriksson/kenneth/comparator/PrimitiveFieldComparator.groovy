@@ -1,6 +1,6 @@
 package com.pettereriksson.kenneth.comparator;
 
-import com.pettereriksson.kenneth.objectfield.PrimitiveField;
+import com.pettereriksson.kenneth.objectfield.PrimitiveField
 
 public class PrimitiveFieldComparator extends FieldComparator {
 
@@ -9,7 +9,6 @@ public class PrimitiveFieldComparator extends FieldComparator {
 	}
 
 	public boolean isEqual() {
-		return field.getValue().equals(field2.getValue());
+		return field.value == field2.value
 	}
-
 }

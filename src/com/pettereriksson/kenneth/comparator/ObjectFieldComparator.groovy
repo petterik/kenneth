@@ -1,7 +1,7 @@
 package com.pettereriksson.kenneth.comparator;
 
-import com.pettereriksson.kenneth.ObjectState
-import com.pettereriksson.kenneth.objectfield.ObjectField
+import com.pettereriksson.kenneth.ObjectState;
+import com.pettereriksson.kenneth.objectfield.ObjectField;
 
 public class ObjectFieldComparator extends FieldComparator {
 

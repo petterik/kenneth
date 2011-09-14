@@ -22,71 +22,64 @@ public class ObjectStateComparatorImpl implements ObjectStateComparator {
 		this.other = other;
 		if (areBothObjectsNull())
 			return true;
-		if (areObjectEquals())
+		if (areObjectEqual())
 			return true;
 		else
 			return areFieldsEqual();
 	}
 
 	private boolean areBothObjectsNull() {
-		return state.getObject() == null && other.getObject() == null;
+		return !state.object && !other.object
 	}
 
-	private boolean areObjectEquals() {
-		Object object = state.getObject();
-		Object object2 = other.getObject();
-		if (new EqualsImplementationChecker(object).hasOwnEqualsImplementation())
-			return object.equals(object2);
+	private boolean areObjectEqual() {
+		if (new EqualsImplementationChecker(state.object).hasOwnEqualsImplementation())
+			return state.object == other.object
 		else
 			return false;
 	}
 
 	private boolean areFieldsEqual() {
-		if (state.getObjectFields().size() != other.getObjectFields().size())
+		if (state.objectFields.size() != other.objectFields.size())
 			return false;
 		else
-			return doCheckFieldsEquality();
+			return doCheckFieldsEquality ()
 	}
 
 	private boolean doCheckFieldsEquality() {
-		for (int i = 0; i < state.getObjectFields().size(); i++)
+		def objectFieldAtIndex = {  objectState, int i -> objectState.objectFields.get(i) }
+		for (int i = 0; i < state.objectFields.size(); i++)
 			if (!areInduvidualFieldEqual(objectFieldAtIndex(state, i), objectFieldAtIndex(other, i)))
-				return false;
-		return true;
-	}
-
-	private ObjectField objectFieldAtIndex(ObjectState state, int index) {
-		return state.getObjectFields().get(index);
+				return false
+		return true
 	}
 
 	private boolean areInduvidualFieldEqual(ObjectField objectField, ObjectField objectField2) {
-		if (objectField.getField().getName().equals("cb"))
-			"hej".substring(1);
-		if (!areObjectsAlreadyChecked(objectField.getValue(), objectField2.getValue())) {
-			markObjectsAsChecked(objectField.getValue(), objectField.getValue());
-			return checkEquality(objectField, objectField2);
+		if (!areObjectsAlreadyChecked(objectField.value, objectField2.value)) {
+			markObjectsAsChecked(objectField.value, objectField.value)
+			return checkEquality(objectField, objectField2)
 		}
 		return true;
 	}
 
 	private boolean areObjectsAlreadyChecked(Object object, Object object2) {
-		return isObjectContainedInCheckedObjects(object) || isObjectContainedInCheckedObjects(object2);
+		isObjectContainedInCheckedObjects(object) || isObjectContainedInCheckedObjects(object2)
 	}
 
 	private boolean isObjectContainedInCheckedObjects(Object object) {
-		for (Object o : checkedObjects)
-			if (o == object)
-				return true;
-		return false;
+		for (o in checkedObjects)
+			if (o.is(object))
+				return true
+		return false
 	}
 
 	private void markObjectsAsChecked(Object value, Object value2) {
-		checkedObjects.add(value);
-		checkedObjects.add(value2);
+		checkedObjects.add(value)
+		checkedObjects.add(value2)
 	}
 
 	private boolean checkEquality(ObjectField objectField, ObjectField objectField2) {
-		FieldComparator comparator = fieldComparatorFactory.get(objectField, objectField2);
-		return comparator.isEqual();
+		FieldComparator comparator = fieldComparatorFactory.get(objectField, objectField2)
+		comparator.isEqual()
 	}
 }

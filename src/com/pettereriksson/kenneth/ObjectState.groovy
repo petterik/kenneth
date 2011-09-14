@@ -38,11 +38,11 @@ public class ObjectState {
 		object ? object.class: null
 	}
 
-	private void addFieldsFromClass(Class class1) {
-		class1.declaredFields.each { field -> objectFields.add(wrapField(field)) }
+	private void addFieldsFromClass(Class clazz) {
+		clazz.declaredFields.each { field -> objectFields.add(wrapField(field)) }
 	}
 
 	private ObjectField wrapField (Field f) {
-		ObjectFieldFactory.get(object, f);
+		ObjectFieldFactory.get(object, f)
 	}
 }

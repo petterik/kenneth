@@ -1,11 +1,11 @@
 package com.pettereriksson.kenneth.objectfield;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.Field
 
 public class ObjectField {
 
-	private final Object object;
-	private final Field field;
+	final Object object;
+	final Field field;
 
 	ObjectField(Object object, Field field) {
 		this.object = object;
@@ -17,20 +17,12 @@ public class ObjectField {
 		this(objectField.getObject(), objectField.getField());
 	}
 
-	public Object getObject() {
-		return object;
-	}
-
-	public Field getField() {
-		return field;
-	}
-
 	public boolean isPrimitive() {
-		return field.getType().isPrimitive();
+		return field.type.isPrimitive()
 	}
 
 	public boolean isArray() {
-		return field.getType().isArray();
+		return field.type.isArray()
 	}
 
 	public Object getValue() {
@@ -43,7 +35,6 @@ public class ObjectField {
 
 	@Override
 	public String toString() {
-		return "ObjectField [object=" + object + ", field=" + field == null ? "(null)" : field.getName() + "]";
+		return "ObjectField [object=${object}, field=${field.getName()}";
 	}
-
 }
